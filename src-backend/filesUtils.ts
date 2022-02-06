@@ -10,8 +10,8 @@ export function getFiles() {
 export function listen(mainWindow: Electron.BrowserWindow) {
   ipcMain.on('test', (event, arg) => {
     console.log('ipcMain');
-    console.log(event);
-    console.log(arg);
+    //console.log(event);
+    //console.log(arg);
     mainWindow.webContents.send('response', getFiles());
   })
 }
