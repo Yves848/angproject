@@ -1,0 +1,43 @@
+{
+  "name": "angproject",
+  "version": "0.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "electron .",
+    "build": "ng build --prod --base-href ./ && tsc --lib es2018,DOM --target es5 src-backend/main.ts --outDir dist",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "package": "npm run build && electron-packager . myapp --overwrite --asar --icon=dist/angproject/assets/icon.ico --ignore=^e2e$ --ignore=^src$ --ignore=^src-backend$ --ignore=^.editorconfig$ --ignore=^.gitignore$ --ignore=^angular.json$ --ignore=^browserslist$ --ignore=^karma.conf.js$ --ignore=^package-lock.json$ --ignore=^README.md$ --ignore=^tslint --ignore=^tsconfig"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~13.2.0",
+    "@angular/common": "~13.2.0",
+    "@angular/compiler": "~13.2.0",
+    "@angular/core": "~13.2.0",
+    "@angular/forms": "~13.2.0",
+    "@angular/platform-browser": "~13.2.0",
+    "@angular/platform-browser-dynamic": "~13.2.0",
+    "@angular/router": "~13.2.0",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~13.2.2",
+    "@angular/cli": "~13.2.2",
+    "@angular/compiler-cli": "~13.2.0",
+    "@types/jasmine": "~3.10.0",
+    "@types/node": "^12.20.43",
+    "electron": "^17.0.0",
+    "electron-packager": "^15.4.0",
+    "jasmine-core": "~4.0.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.1.0",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "typescript": "~4.5.2"
+  }
+}
