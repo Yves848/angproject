@@ -28,4 +28,8 @@ export class IpcService {
       return result;
     }
   }
+
+  getFiles(dir: string): string[] {
+    return electron.ipcRenderer.sendSync('getFiles', { dir })
+  }
 }

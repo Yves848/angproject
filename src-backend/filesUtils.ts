@@ -3,15 +3,16 @@ import * as path from "path";
 import * as fs from "fs";
 
 
-export function getFiles() {
-  return fs.readdirSync(path.join(__dirname));
+export function getFiles(dir: string) {
+  return fs.readdirSync(path.join(dir));
 }
 
 export function listen(mainWindow: Electron.BrowserWindow) {
-  ipcMain.on('test', (event, arg) => {
+  ipcMain.on('getFiles', (event, arg) => {
     console.log('ipcMain');
     //console.log(event);
-    //console.log(arg);
-    mainWindow.webContents.send('r-getFiles', getFiles());
+    console.log(arg);
+    const files = getFiles(arg.dir);
+    if (files) event.returnValue = files;
   })
 }

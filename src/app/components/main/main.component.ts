@@ -10,6 +10,7 @@ import { IpcService } from './../../services/ipc.service';
 })
 export class MainComponent implements OnInit {
   path = '';
+  files: string[] = [];
 
   constructor(private ipc: IpcService) {
 
@@ -21,7 +22,13 @@ export class MainComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.path = this.ipc.openDialog();
+    this.path = this.ipc.openDialog()[0];
+    this.getFiles();
+  }
+
+  getFiles(): void {
+    this.files = this.ipc.getFiles(this.path);
+    console.log('getFiles', this.files);
   }
 
 }
