@@ -9,14 +9,19 @@ import { IpcService } from './../../services/ipc.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  path = '';
 
-  constructor(ipc: IpcService) {
+  constructor(private ipc: IpcService) {
 
     ipc.listen();
 
   }
 
   ngOnInit(): void {
+  }
+
+  openDialog(): void {
+    this.path = this.ipc.openDialog();
   }
 
 }

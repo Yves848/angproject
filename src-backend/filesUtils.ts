@@ -12,6 +12,6 @@ export function listen(mainWindow: Electron.BrowserWindow) {
     console.log('ipcMain');
     //console.log(event);
     //console.log(arg);
-    mainWindow.webContents.send('response', getFiles());
+    mainWindow.webContents.send('r-getFiles', getFiles());
   })
 }

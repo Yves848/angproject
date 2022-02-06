@@ -11,12 +11,21 @@ export class IpcService {
   }
 
   listen() {
-    electron.ipcRenderer.on('response', (event: any, arg: any) => {
+    electron.ipcRenderer.on('r-getFiles', (event: any, arg: any) => {
       console.log('frontend');
       console.log(event);
       console.log(arg);
     })
     console.log('send message to backend');
     electron.ipcRenderer.send('test', 'je suis là');
+  }
+
+  openDialog() {
+    console.log('service', 'openDialog')
+    const result = electron.ipcRenderer.sendSync('openDialog');
+    console.log('result', result);
+    if (result) {
+      return result;
+    }
   }
 }
