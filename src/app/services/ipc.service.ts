@@ -16,12 +16,10 @@ export class IpcService {
       console.log(event);
       console.log(arg);
     })
-    console.log('send message to backend');
-    electron.ipcRenderer.send('test', 'je suis là');
   }
 
   openDialog() {
-    console.log('service', 'openDialog')
+    console.log('service', 'openDialog');
     const result = electron.ipcRenderer.sendSync('openDialog');
     console.log('result', result);
     if (result) {

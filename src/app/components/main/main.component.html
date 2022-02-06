@@ -2,3 +2,17 @@
   <button class="btn btn-primary btn-sm" (click)="openDialog()">Open dialog</button>
   {{path}}
 </div>
+<!-- <div>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" data-bs-toggle="list" *ngFor="let file of files">{{ file }}</li>
+  </ul>
+</div> -->
+
+<div class="list-group" id="list-tab" role="tablist">
+  <a
+    [ngClass]="{'active': file.active, 'list-group-item': true, 'list-group-item-action': true}"
+    *ngFor="let file of files"
+    (click)="clickFile(file)"
+    >{{ file.file }}</a
+  >
+</div>

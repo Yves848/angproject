@@ -14,6 +14,7 @@ app.on("ready", () => {
       contextIsolation: false
     }
   });
+
   mainWindow.loadFile(path.join(__dirname, "../dist/angproject/index.html"));
   console.log('started');
   listenFiles(mainWindow);
