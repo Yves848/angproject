@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { listen as listenFiles } from './filesUtils';
+import { select } from './databases';
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -15,6 +16,7 @@ app.on("ready", () => {
   mainWindow.loadFile(path.join(__dirname, "../dist/angproject/index.html"));
   console.log('started');
   listenFiles(mainWindow);
+  select();
 });
 
 app.on("window-all-closed", () => {
