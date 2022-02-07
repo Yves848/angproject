@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { UtilsService } from './utils.service';
+
 const electron = (<any>window).require('electron');
 
 @Injectable({
@@ -6,7 +8,7 @@ const electron = (<any>window).require('electron');
 })
 export class IpcService {
 
-  constructor() {
+  constructor(private utils: UtilsService) {
 
   }
 
@@ -29,5 +31,9 @@ export class IpcService {
 
   getFiles(dir: string): string[] {
     return electron.ipcRenderer.sendSync('getFiles', { dir })
+  }
+
+  getTags(path: string, file: string): void {
+    electron.ipcRenderer.send('getTags', { path, file });
   }
 }

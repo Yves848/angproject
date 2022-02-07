@@ -6,7 +6,10 @@ import * as fs from "fs";
 export function getFiles(dir: string) {
   return fs.readdirSync(path.join(dir));
 }
+/*
+  listen : fonction qui ajouter les listeners pour le module fileutils
 
+*/
 export function listen(mainWindow: Electron.BrowserWindow) {
   ipcMain.on('getFiles', (event, arg) => {
     console.log('ipcMain');

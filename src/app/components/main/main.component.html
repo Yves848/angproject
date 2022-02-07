@@ -1,13 +1,3 @@
-<div class="container px-4 m-4">
-  <button class="btn btn-primary btn-sm" (click)="openDialog()">Open dialog</button>
-  {{path}}
-</div>
+<app-menu></app-menu>
 
-<div class="list-group" id="list-tab" role="tablist">
-  <a
-    [ngClass]="{'active': file.active, 'list-group-item': true, 'list-group-item-action': true}"
-    *ngFor="let file of files"
-    (click)="clickFile(file)"
-    >{{ file.file }}</a
-  >
-</div>
+<app-filelist></app-filelist>

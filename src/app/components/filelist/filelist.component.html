@@ -1,0 +1,8 @@
+<div class="list-group" id="list-tab" role="tablist">
+  <a
+    [ngClass]="{'active': file.active, 'list-group-item': true, 'list-group-item-action': true}"
+    *ngFor="let file of data.files"
+    (click)="clickFile(file)"
+    >{{ file.file }}</a
+  >
+</div>
