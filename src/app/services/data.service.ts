@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { fileList } from '../../interfaces/interface'
+import { fileList } from '../../../src-backend/interfaces/interface'
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,11 @@ import { fileList } from '../../interfaces/interface'
 export class DataService {
   path = '';
   files: fileList[] = [];
-  selectedFile: string = '';
+  selectedFile: fileList = {
+    file: "",
+    active: false,
+    tags: undefined
+  }
 
   constructor() { }
 }

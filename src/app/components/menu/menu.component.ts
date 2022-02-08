@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IpcService } from './../../services/ipc.service';
-import { fileList } from '../../../interfaces/interface'
 import { DataService } from './../../services/data.service';
 import { UtilsService } from './../../services/utils.service';
+import { fileList } from 'src-backend/interfaces/interface';
 
 @Component({
   selector: 'app-menu',
@@ -29,17 +29,17 @@ export class MenuComponent implements OnInit {
 
   getFiles(): void {
     const files = this.ipc.getFiles(this.data.path);
-    this.data.files = files.map(file => {
-      return {
-        file: file,
-        active: false
-      }
+    files.forEach(file => {
+      this.data.files.push(
+        file
+      )
     })
+
     console.log('getFiles', this.data.files);
   }
 
   getTags(): void {
-    this.ipc.getTags(this.data.path, this.data.selectedFile);
+    this.ipc.getTags(this.data.path, this.data.selectedFile!.file);
   }
 
 }

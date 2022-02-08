@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "electron .",
-    "build": "ng build --prod --base-href ./ && tsc --lib es2018,DOM --target es5 src-backend/main.ts --outDir dist",
+    "build": "ng build --prod --base-href ./ && tsc --lib es2018,dom --target es5 src-backend/main.ts --outDir dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "package": "npm run build && electron-packager . myapp --overwrite --asar --icon=dist/angproject/assets/icon.ico --ignore=^e2e$ --ignore=^src$ --ignore=^src-backend$ --ignore=^.editorconfig$ --ignore=^.gitignore$ --ignore=^angular.json$ --ignore=^browserslist$ --ignore=^karma.conf.js$ --ignore=^package-lock.json$ --ignore=^README.md$ --ignore=^tslint --ignore=^tsconfig"

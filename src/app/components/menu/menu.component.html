@@ -5,5 +5,19 @@
 
 <div class="container px-4 m-4">
   <button class="btn btn-primary btn-sm" (click)="getTags()">Extract Tags</button>
-  {{data.selectedFile}}
+  {{data.selectedFile.file}}
+</div>
+
+<div class="container px-4 m-4">
+  <p>
+    fichier
+  </p>
+  {{data.selectedFile.file}}
+</div>
+
+<div class="container px-4 m-4">
+  <p>
+    Artiste
+  </p>
+  {{data.selectedFile.tags ? data.selectedFile.tags!.artist : ""}}
 </div>

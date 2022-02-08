@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IpcService } from './../../services/ipc.service';
-import { fileList } from '../../../interfaces/interface'
+import { fileList } from '../../../../src-backend/interfaces/interface'
 import { DataService } from './../../services/data.service';
 
 @Component({

@@ -14,7 +14,7 @@ export function openDialog() {
 
 export function listen(mainWindow: Electron.BrowserWindow) {
   ipcMain.on('openDialog', (event, arg) => {
-    console.log('ipcMain');
+    console.log('openDialog');
     event.returnValue = openDialog();
   })
 }

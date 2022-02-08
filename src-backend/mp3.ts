@@ -2,15 +2,19 @@ import * as id3 from 'node-id3';
 import { ipcMain } from "electron";
 import * as path from "path";
 import * as fs from "fs";
+import { fileList, Tags } from './interfaces/interface'
 
 
-export function readTags(file: string): id3.Tags {
+export function readTags(file: string): Tags {
   let tags: id3.Tags = {};
   tags = id3.read(file);
-  console.log(tags.artist);
-  console.log(tags.title);
-  console.log(tags.image ? 'cover' : 'no cover');
-  return tags;
+  return {
+    album: tags.album,
+    artist: tags.artist,
+    title: tags.title,
+    image: tags.image
+
+  };
 
 }
 
@@ -23,7 +27,10 @@ export function listen(mainWindow: Electron.BrowserWindow) {
     console.log('getTags', arg);
     if (arg.path && arg.file) {
       if (fs.existsSync(path.join(arg.path, arg.file))) {
-        readTags(path.join(arg.path, arg.file));
+        const tags = readTags(path.join(arg.path, arg.file));
+        console.log(tags.artist);
+        console.log(tags.title);
+        console.log(tags.image ? 'cover' : 'no cover');
       }
     }
 
