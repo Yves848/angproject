@@ -26,16 +26,23 @@ export class MenuComponent implements OnInit {
       this.getFiles();
     }
   }
+  openDialog2(): void {
+    const result = this.ipc.openDialog();
+    if (result && result.length) {
+      this.data.path = result[0]
+      this.utils.changeCaption(this.data.path);
+      this.getFiles2();
+    }
+  }
 
   getFiles(): void {
-    const files = this.ipc.getFiles(this.data.path);
-    files.forEach(file => {
-      this.data.files.push(
-        file
-      )
-    })
+    //this.data.files = this.ipc.getFiles(this.data.path);
+    this.ipc.getFiles(this.data.path);
+  }
 
-    console.log('getFiles', this.data.files);
+  getFiles2(): void {
+    //this.data.files = this.ipc.getFiles(this.data.path);
+    this.ipc.getFiles2(this.data.path);
   }
 
   getTags(): void {

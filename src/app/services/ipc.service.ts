@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { fileList } from 'src-backend/interfaces/interface';
 import { UtilsService } from './utils.service';
+import { DataService } from './data.service';
 
 const electron = (<any>window).require('electron');
 
@@ -9,15 +10,15 @@ const electron = (<any>window).require('electron');
 })
 export class IpcService {
 
-  constructor(private utils: UtilsService) {
+  constructor(private utils: UtilsService, private data: DataService) {
 
   }
 
   listen() {
-    electron.ipcRenderer.on('r-getFiles', (event: any, arg: any) => {
-      console.log('frontend');
-      console.log(event);
-      console.log(arg);
+    electron.ipcRenderer.on('r-getFiles', (event: any, arg: fileList) => {
+      console.log('r-getFiles', arg);
+      const a: fileList[] = [...this.data.files, arg]
+      this.data.files = a;
     })
   }
 
@@ -31,9 +32,13 @@ export class IpcService {
   }
 
   getFiles(dir: string): fileList[] {
-    const files: fileList[] = electron.ipcRenderer.sendSync('getFiles', { dir });
-    console.log('getFiles', files);
-    return files;
+    return <fileList[]>electron.ipcRenderer.sendSync('getFiles', { dir });
+
+  }
+
+  getFiles2(dir: string): void {
+    electron.ipcRenderer.send('getFile', { dir });
+
   }
 
   getTags(path: string, file: string): void {
