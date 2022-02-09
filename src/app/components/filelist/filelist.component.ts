@@ -21,6 +21,9 @@ export class FilelistComponent implements OnInit {
     this.data.files.forEach(file => file.active = false);
     file.active = true;
     this.data.selectedFile = file;
+    if (!this.data.selectedFile.tags) {
+      this.data.selectedFile.tags = this.ipc.getTags(this.data.path, file);
+    }
     console.log('clickFile', file);
     console.log('Selected file', file.file);
   }

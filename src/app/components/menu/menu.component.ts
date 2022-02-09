@@ -36,8 +36,8 @@ export class MenuComponent implements OnInit {
   }
 
   getFiles(): void {
-    //this.data.files = this.ipc.getFiles(this.data.path);
-    this.ipc.getFiles(this.data.path);
+    this.data.files = this.ipc.getFiles(this.data.path);
+    //this.ipc.getFiles(this.data.path);
   }
 
   getFiles2(): void {
@@ -46,7 +46,7 @@ export class MenuComponent implements OnInit {
   }
 
   getTags(): void {
-    this.ipc.getTags(this.data.path, this.data.selectedFile!.file);
+    this.ipc.getTags(this.data.path, this.data.selectedFile!);
   }
 
 }

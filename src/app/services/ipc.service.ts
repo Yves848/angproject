@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { fileList } from 'src-backend/interfaces/interface';
 import { UtilsService } from './utils.service';
 import { DataService } from './data.service';
+import { Tags } from './../../../src-backend/interfaces/interface';
 
 const electron = (<any>window).require('electron');
 
@@ -41,7 +42,9 @@ export class IpcService {
 
   }
 
-  getTags(path: string, file: string): void {
-    electron.ipcRenderer.send('getTags', { path, file });
+  getTags(path: string, file: fileList): Tags {
+    const tags: Tags = electron.ipcRenderer.sendSync('getTags', { path, file: file.file });
+    console.log('ipc=> getTags', tags);
+    return tags;
   }
 }

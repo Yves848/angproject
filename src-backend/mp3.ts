@@ -31,9 +31,13 @@ export function listen(mainWindow: Electron.BrowserWindow) {
         console.log(tags.artist);
         console.log(tags.title);
         console.log(tags.image ? 'cover' : 'no cover');
+        event.returnValue = {
+          album: tags.album,
+          artist: tags.artist,
+          title: tags.title,
+          image: tags.image
+        };
       }
     }
-
-    event.returnValue = '';
   })
 }
