@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { IpcService } from './../../services/ipc.service';
 import { DataService } from './../../services/data.service';
 import { UtilsService } from './../../services/utils.service';
@@ -10,9 +10,12 @@ import { fileList } from 'src-backend/interfaces/interface';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  _worker = new Worker("/src/app/webWorkers/main.worker.ts", { type: 'module' });
 
-  constructor(private ipc: IpcService, public data: DataService, private utils: UtilsService) {
+
+  constructor(private ipc: IpcService, public data: DataService, private utils: UtilsService, private ngZone: NgZone) {
     //ipc.listen();
+    this._worker.onmessage
   }
 
   ngOnInit(): void {
@@ -47,6 +50,18 @@ export class MenuComponent implements OnInit {
 
   getTags(): void {
     this.ipc.getTags(this.data.path, this.data.selectedFile!);
+  }
+
+  getAllTags(): void {
+    this.ngZone.runOutsideAngular(() => {
+      console.log('getAllTags', this.data.files)
+      this._worker.postMessage('message');
+      // this.data.files.forEach(file => {
+      //   file.tags = this.ipc.getTags(this.data.path, file);
+      // })
+    });
+
+
   }
 
 }

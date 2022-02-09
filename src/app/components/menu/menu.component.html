@@ -4,7 +4,12 @@
 </div>
 
 <div class="container px-4 m-4">
-  <button class="btn btn-primary btn-sm" (click)="getTags()">Extract Tags</button>
+  <button class="btn btn-primary btn-sm" (click)="getTags()">Extract Selected Tags</button>
+  {{data.selectedFile.file}}
+</div>
+
+<div class="container px-4 m-4">
+  <button class="btn btn-primary btn-sm" (click)="getAllTags()">Extract All Tags</button>
   {{data.selectedFile.file}}
 </div>
 
