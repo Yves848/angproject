@@ -18,8 +18,8 @@ export class IpcService {
   listen() {
     electron.ipcRenderer.on('r-getFiles', (event: any, arg: fileList) => {
       console.log('r-getFiles', arg);
-      const a: fileList[] = [...this.data.files, arg]
-      this.data.files = a;
+      //const a: fileList[] = [...this.data.files, arg]
+      //this.data.files = a;
     })
   }
 
@@ -37,10 +37,7 @@ export class IpcService {
 
   }
 
-  getFiles2(dir: string): void {
-    electron.ipcRenderer.send('getFile', { dir });
 
-  }
 
   getTags(path: string, file: fileList): Tags {
     const tags: Tags = electron.ipcRenderer.sendSync('getTags', { path, file: file.file });

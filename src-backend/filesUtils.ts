@@ -33,4 +33,22 @@ export function listen(mainWindow: Electron.BrowserWindow) {
     }
   });
 
+  ipcMain.handle('getFiles_Promise', async (event: Electron.IpcMainInvokeEvent, dir: string) => {
+    console.log('getFiles_Promise', event, dir);
+    const files = getFiles(dir);
+    if (files) {
+      let filesWithTags: fileList[] = [];
+      filesWithTags = files.map(file => {
+        console.log('file', file);
+        return {
+          file: file,
+          active: false,
+          tags: undefined
+        }
+      });
+      return filesWithTags;
+    }
+    return [];
+  });
+
 }

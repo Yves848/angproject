@@ -10,11 +10,13 @@ import { DataService } from './../../services/data.service';
 })
 export class FilelistComponent implements OnInit {
 
+
   constructor(private ipc: IpcService, public data: DataService) {
     ipc.listen();
   }
 
   ngOnInit(): void {
+
   }
 
   clickFile(file: fileList): void {

@@ -26,27 +26,26 @@ export class MenuComponent implements OnInit {
     if (result && result.length) {
       this.data.path = result[0]
       this.utils.changeCaption(this.data.path);
-      this.getFiles();
-    }
-  }
-  openDialog2(): void {
-    const result = this.ipc.openDialog();
-    if (result && result.length) {
-      this.data.path = result[0]
-      this.utils.changeCaption(this.data.path);
-      this.getFiles2();
+      this.getFiles(this.data.path);
     }
   }
 
-  getFiles(): void {
-    this.data.files = this.ipc.getFiles(this.data.path);
-    //this.ipc.getFiles(this.data.path);
+  // openDialog2(): void {
+  //   const result = this.ipc.openDialog();
+  //   if (result && result.length) {
+  //     this.data.path = result[0]
+  //     this.utils.changeCaption(this.data.path);
+  //     //this.getFiles2();
+  //   }
+  // }
+
+  getFiles(path: string): void {
+    const filesObservable = this.data.loadFiles(path);
+    filesObservable.subscribe((files: fileList[]) => {
+      this.data.files = files;
+    });
   }
 
-  getFiles2(): void {
-    //this.data.files = this.ipc.getFiles(this.data.path);
-    this.ipc.getFiles2(this.data.path);
-  }
 
   getTags(): void {
     this.ipc.getTags(this.data.path, this.data.selectedFile!);
@@ -54,11 +53,8 @@ export class MenuComponent implements OnInit {
 
   getAllTags(): void {
     this.ngZone.runOutsideAngular(() => {
-      console.log('getAllTags', this.data.files)
+      //console.log('getAllTags', this.data.files)
       this._worker.postMessage('message');
-      // this.data.files.forEach(file => {
-      //   file.tags = this.ipc.getTags(this.data.path, file);
-      // })
     });
 
 
