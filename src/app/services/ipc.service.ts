@@ -37,11 +37,8 @@ export class IpcService {
 
   }
 
-
-
   getTags(path: string, file: fileList): Tags {
     const tags: Tags = electron.ipcRenderer.sendSync('getTags', { path, file: file.file });
-    console.log('ipc=> getTags', tags);
     return tags;
   }
 }

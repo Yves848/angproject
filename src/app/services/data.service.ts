@@ -9,7 +9,6 @@ const electron = (<any>window).require('electron');
 })
 export class DataService {
   path = '';
-  //$files: Observable<fileList[]>;
   files: fileList[] = [];
   readonly EMPTY_STATE: fileList[] = [];
 

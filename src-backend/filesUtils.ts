@@ -22,7 +22,7 @@ export function listen(mainWindow: Electron.BrowserWindow) {
     if (files) {
       let filesWithTags: fileList[] = [];
       filesWithTags = files.map(file => {
-        console.log('file', file);
+        //console.log('file', file);
         return {
           file: file,
           active: false,
@@ -39,7 +39,7 @@ export function listen(mainWindow: Electron.BrowserWindow) {
     if (files) {
       let filesWithTags: fileList[] = [];
       filesWithTags = files.map(file => {
-        console.log('file', file);
+        //console.log('file', file);
         return {
           file: file,
           active: false,
